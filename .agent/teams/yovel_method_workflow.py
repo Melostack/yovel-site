@@ -1,61 +1,85 @@
 import os
 import json
+from pathlib import Path
 from dotenv import load_dotenv
 from agno.agent import Agent
 from agno.models.google import Gemini
-from agno.team import Team
+from agno.tools.file import FileTools
 
+# Load environment variables
 load_dotenv()
 
-api_key = os.getenv("GOOGLE_API_KEY")
-if not api_key:
-    raise ValueError("GOOGLE_API_KEY not found")
+# Configuration
+API_KEY = os.getenv("GEMINI_API_KEY")
+model = Gemini(id="gemini-2.5-flash-lite", api_key=API_KEY)
 
-gemini = Gemini(id="gemini-2.5-flash-lite", api_key=api_key)
-
-# 1. UI/UX Specialist (Token Generator)
-ui_ux = Agent(
+# Define Agents
+ui_ux_specialist = Agent(
     name="UI/UX Specialist",
-    role="Design System Architect",
+    model=model,
+    tools=[FileTools(base_dir=Path("."))],
+    description="Luxury Tech UI/UX Expert. Inspiration: Meraas.",
     instructions=[
-        "You are the source of truth for the Yovel Design System.",
-        "Your task is to generate a JSON object with specific design tokens.",
-        "Extract/Infer values based on 'Luxury Financial Tech' aesthetic (Meraas inspired).",
-        "Tokens required:",
-        "  - card_bg: valid tailwind class or hex with opacity for glassmorphism",
-        "  - card_border: valid tailwind class or hex",
-        "  - stagger_delay: number (seconds) for staggered animation",
-        "Output ONLY valid JSON.",
-        "Do not use markdown blocks."
+        "Sua primeira tarefa é criar o arquivo src/theme/design_tokens.json.",
+        "Baseie-se na análise do site Meraas para definir opacidades de glassmorphism e timings de animação.",
+        "O foco é sutileza: nada de cores vibrantes demais ou animações frenéticas. O luxo é calmo.",
+        "Use exactly the structure provided in the requirements (theme, tokens, colors, effects, spacing, animations)."
     ],
-    model=gemini,
+    markdown=True
 )
 
-# 2. Frontend Engineer (Implementation logic)
-frontend = Agent(
+frontend_engineer = Agent(
     name="Frontend Engineer",
-    role="React Developer",
+    model=model,
+    tools=[FileTools(base_dir=Path("."))],
+    description="Expert React Developer using Framer Motion and Tailwind.",
     instructions=[
-        "You receive the Design Tokens JSON.",
-        "Create a plan to usage these tokens in 'Method.tsx' using BentoGrid.",
-        "Define the 4 slots: Title, Glass Feature, WebP Image, CTA.",
+        "Refactor src/components/ui/BentoGrid.tsx to import designTokens from '@/theme/design_tokens.json'.",
+        "Implement src/components/sections/Method.tsx using the refactored BentoGrid.",
+        "Você está proibido de usar valores 'hardcoded' no CSS/Tailwind para os cartões do Bento Grid.",
+        "Para animações com Framer Motion, use o stagger_delay do JSON para o staggerChildren no componente pai.",
+        "Use '@/theme/design_tokens.json' import alias."
     ],
-    model=gemini,
+    markdown=True
 )
 
-method_team = Team(
-    members=[ui_ux, frontend],
+security_auditor = Agent(
+    name="Security Auditor",
+    model=model,
+    tools=[FileTools(base_dir=Path("."))],
+    description="Security and Performance Auditor",
     instructions=[
-        "Step 1: UI/UX generates design_tokens.json content.",
-        "Step 2: Frontend plans the implementation using these tokens.",
-        "Goal: Create the 'Method Section' specification."
+        "Verify if images in Method.tsx are using WebP format.",
+        "Check if the new implementations maintain LCP < 1.6s (theoretical check)."
     ],
-    model=gemini,
+    markdown=True
 )
 
-if __name__ == "__main__":
-    method_team.print_response(
-        "Generate the design_tokens.json content for the Method Section. "
-        "Then explain how to use them in Method.tsx with BentoGrid.", 
+# Orchestrator
+def run_workflow():
+    print("🚀 Starting Meraas Luxury Tech Refinement...\n")
+    
+    # 1. Generate Design Tokens
+    print("🎨 UI/UX Specialist: Generating Design Tokens...")
+    ui_ux_specialist.print_response(
+        "Generate src/theme/design_tokens.json with the provided Luxury Dark theme structure.", 
         stream=True
     )
+    
+    # 2. Refactor BentoGrid & Implement Method
+    print("\n🏗️ Frontend Engineer: Implementing Components...")
+    frontend_engineer.print_response(
+        "1. Refactor src/components/ui/BentoGrid.tsx to use design tokens.\n"
+        "2. Implement src/components/sections/Method.tsx using BentoGrid and tokens.\n"
+        "Refer to src/theme/design_tokens.json for values.",
+        stream=True
+    )
+    
+    # 3. Audit
+    print("\n🔒 Security Auditor: Verifying...")
+    security_auditor.print_response("Verify WebP usage in the new Method.tsx.", stream=True)
+
+    print("\n✅ Workflow Complete.")
+
+if __name__ == "__main__":
+    run_workflow()

@@ -1,66 +1,30 @@
-import { motion } from "framer-motion";
 import { BentoGrid, BentoGridItem } from "../ui/BentoGrid";
-import tokens from "../../design_tokens.json";
+import designTokens from "@/theme/design_tokens.json";
 
 export const Method = () => {
-    const { slots, card_bg, card_border, stagger_delay } = tokens;
-
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: stagger_delay,
-            },
-        },
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-    };
+    const { colors } = designTokens.tokens;
 
     const items = [
-        // Slot 1: Title
         {
-            header: (
-                <div className="flex flex-col justify-center h-full p-6">
-                    <h2 className={slots.slot_1.typography}>O Método Yovel</h2>
-                </div>
-            ),
-            className: "md:col-span-2 md:row-span-1",
+            title: "Otimização Cambial",
+            description: "Eliminamos o spread abusivo e o IOF, recuperando em média 15% do seu orçamento.",
+            header: <div className="flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-900 to-neutral-800" />,
+            icon: <span className="text-4xl">💰</span>,
+            className: "md:col-span-2",
         },
-        // Slot 2: Glass Feature
         {
-            header: (
-                <div className="relative h-full flex items-center justify-center p-6">
-                    <div className={`absolute inset-0 bg-white opacity-[${slots.slot_2.opacity}]`} />
-                    <p className="font-sora text-xl text-white z-10">Glassmorphism Feature</p>
-                </div>
-            ),
-            className: "md:col-span-1 md:row-span-1",
+            title: "Poder de Compra",
+            description: "Transformamos economia em acesso: Salas VIP, passagens otimizadas e upgrades.",
+            header: <div className="flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-gold-alchemist/20 to-neutral-900" />,
+            icon: <span className="text-4xl">✈️</span>,
+            className: "md:col-span-1",
         },
-        // Slot 3: Image
         {
-            header: (
-                <img
-                    src={slots.slot_3.src}
-                    alt={slots.slot_3.alt}
-                    className="w-full h-full object-cover rounded-xl"
-                />
-            ),
-            className: "md:col-span-1 md:row-span-2",
-        },
-        // Slot 4: CTA
-        {
-            header: (
-                <div className="flex flex-col items-center justify-center h-full p-6">
-                    <button className={`px-6 py-3 rounded-full font-bold ${slots.slot_4.bg} ${slots.slot_4.text} hover:opacity-90 transition-opacity`}>
-                        Conheça Mais
-                    </button>
-                </div>
-            ),
-            className: "md:col-span-2 md:row-span-1",
+            title: "Parcerias Estratégicas",
+            description: "Parceria com Confins para entregar tarifas aéreas exclusivas.",
+            header: <div className="flex-1 w-full h-full min-h-[6rem] rounded-xl bg-neutral-900 border border-white/5" />,
+            icon: <span className="text-4xl">🤝</span>,
+            className: "md:col-span-3",
         },
     ];
 
@@ -69,24 +33,25 @@ export const Method = () => {
             {/* Background gradient for depth */}
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black via-transparent to-black pointer-events-none" />
 
-            <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
-                variants={containerVariants}
-                className="max-w-7xl mx-auto"
-            >
+            <div className="max-w-7xl mx-auto">
+                <div className="mb-16 text-center md:text-left">
+                    <h2 className="font-sora text-4xl font-bold mb-4 text-white">O Método Yovel</h2>
+                    <p className="text-neutral-400 max-w-xl">Dois pilares de otimização para desbloquear seu potencial financeiro.</p>
+                </div>
+
                 <BentoGrid className="max-w-4xl mx-auto">
                     {items.map((item, i) => (
-                        <motion.div key={i} variants={itemVariants} className={item.className}>
-                            <BentoGridItem
-                                header={item.header}
-                                className={`${card_bg} ${card_border} min-h-[200px]`}
-                            />
-                        </motion.div>
+                        <BentoGridItem
+                            key={i}
+                            title={item.title}
+                            description={item.description}
+                            header={item.header}
+                            icon={item.icon}
+                            className={item.className}
+                        />
                     ))}
                 </BentoGrid>
-            </motion.div>
+            </div>
         </section>
     );
 };

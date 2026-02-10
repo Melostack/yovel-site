@@ -1,0 +1,26 @@
+{
+    "theme": "Luxury Dark",
+    "tokens": {
+        "colors": {
+            "card_bg": "rgba(8, 8, 8, 0.65)",
+            "card_border": "rgba(212, 175, 55, 0.15)",
+            "card_border_hover": "rgba(212, 175, 55, 0.4)",
+            "highlight": "#D4AF37"
+        },
+        "effects": {
+            "backdrop_blur": "16px",
+            "glassmorphism_gradient": "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%)",
+            "card_shadow": "0 8px 32px 0 rgba(0, 0, 0, 0.8)"
+        },
+        "spacing": {
+            "bento_gap": "24px",
+            "card_padding": "32px",
+            "border_radius": "20px"
+        },
+        "animations": {
+            "stagger_delay": 0.12,
+            "fade_duration": 0.6,
+            "hover_transition": "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+        }
+    }
+}
