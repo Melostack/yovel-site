@@ -1,0 +1,28 @@
+{
+    "mcpServers": {
+        "context7": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@upstash/context7-mcp",
+                "--api-key",
+                "ctx7sk-e5da26c3-6eba-4258-91a0-67e89e4aa9a6"
+            ]
+        },
+        "shadcn": {
+            "command": "npx",
+            "args": [
+                "shadcn@latest",
+                "mcp"
+            ]
+        },
+        "framer-bridge": {
+            "command": "node",
+            "args": [
+                "/home/ghostwind/Imagens/YOVEL/yovel-site/framer-bridge-mcp/index.js"
+            ]
+        }
+        //other mcp servers
+    }
+}
+// setup mcp server in  ~/.gemini\antigravity\mcp_config.json
