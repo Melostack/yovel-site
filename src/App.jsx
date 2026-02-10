@@ -4,6 +4,7 @@ import { BentoGrid, BentoGridItem } from "./components/ui/BentoGrid";
 import { ServiceCard } from "./components/ui/ServiceCard";
 import { Hero } from "./components/sections/Hero";
 import { Method } from "./components/sections/Method";
+import { InvestmentPerformance } from "./components/sections/InvestmentPerformance";
 import { NoiseOverlay } from "./components/ui/NoiseOverlay";
 import { cn } from "./lib/utils";
 
@@ -66,22 +67,22 @@ function App() {
   const t = (key) => translations[language][key] || key;
 
   return (
-    <div className="min-h-screen bg-deep-black text-white selection:bg-gold-alchemist selection:text-black overflow-x-hidden">
+    <div className="min-h-screen bg-meraas-bg text-meraas-charcoal selection:bg-meraas-gold selection:text-white overflow-x-hidden font-dm-sans">
       <NoiseOverlay />
 
       {/* Navigation / Language */}
-      <nav className="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-deep-black/80 backdrop-blur-md border-b border-white/5">
-        <div className="text-xl font-sora font-bold tracking-widest text-white">YOVEL</div>
+      <nav className="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-meraas-bg/80 backdrop-blur-md border-b border-meraas-charcoal/5">
+        <div className="text-xl font-spectral font-bold tracking-widest text-meraas-black">YOVEL</div>
         <div className="flex gap-4">
           <button
             onClick={() => setLanguage("pt")}
-            className={cn("text-xs font-bold tracking-widest transition-colors", language === 'pt' ? "text-gold-alchemist" : "text-neutral-500 hover:text-white")}
+            className={cn("text-xs font-bold tracking-widest transition-colors", language === 'pt' ? "text-meraas-gold" : "text-meraas-gray hover:text-meraas-black")}
           >
             PT
           </button>
           <button
             onClick={() => setLanguage("en")}
-            className={cn("text-xs font-bold tracking-widest transition-colors", language === 'en' ? "text-gold-alchemist" : "text-neutral-500 hover:text-white")}
+            className={cn("text-xs font-bold tracking-widest transition-colors", language === 'en' ? "text-meraas-gold" : "text-meraas-gray hover:text-meraas-black")}
           >
             EN
           </button>
@@ -89,17 +90,16 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      {/* Hero Section */}
       <Hero />
 
       {/* Problem Section */}
-      <section className="py-24 px-6 bg-charcoal relative">
+      <section className="py-24 px-6 bg-meraas-bg-dark text-white relative">
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="font-sora text-sm text-gold-alchemist uppercase tracking-[0.2em] mb-4"
+            className="font-dm-sans text-sm text-meraas-gold uppercase tracking-[0.2em] mb-4"
           >
             {t('problem_title')}
           </motion.h2>
@@ -107,7 +107,7 @@ function App() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-sora text-3xl md:text-4xl font-light text-white leading-snug"
+            className="font-spectral text-3xl md:text-4xl font-light text-white leading-snug"
           >
             {t('problem_desc')}
           </motion.p>
@@ -116,9 +116,11 @@ function App() {
 
       <Method />
 
+      <InvestmentPerformance />
+
       {/* Testimonial Section */}
-      <section className="py-24 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gold-alchemist/5 -skew-y-3 transform origin-left" />
+      <section className="py-24 px-6 relative overflow-hidden bg-meraas-bg">
+        <div className="absolute inset-0 bg-meraas-gold/5 -skew-y-3 transform origin-left" />
         <div className="max-w-5xl mx-auto relative z-10 flex flex-col md:flex-row items-center gap-12">
           <div className="w-full md:w-1/3">
             <div className="aspect-square rounded-2xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
@@ -126,11 +128,11 @@ function App() {
             </div>
           </div>
           <div className="w-full md:w-2/3">
-            <div className="text-6xl text-gold-alchemist mb-6">“</div>
-            <h3 className="font-sora text-2xl md:text-3xl font-light leading-relaxed mb-6">
+            <div className="text-6xl text-meraas-gold mb-6">“</div>
+            <h3 className="font-spectral text-2xl md:text-3xl font-light leading-relaxed mb-6 text-meraas-black">
               {t('testim_quote')}
             </h3>
-            <p className="font-sans text-gold-alchemist font-bold tracking-widest text-sm uppercase">
+            <p className="font-dm-sans text-meraas-gold font-bold tracking-widest text-sm uppercase">
               {t('testim_author')}
             </p>
           </div>
@@ -138,38 +140,38 @@ function App() {
       </section>
 
       {/* Investment & Founder */}
-      <section className="py-32 px-6 bg-deep-black">
+      <section className="py-32 px-6 bg-meraas-bg-dark text-white">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
           <ServiceCard
             title={t('invest_title')}
             description={t('invest_desc')}
             icon={<span className="text-2xl">💎</span>}
           />
-          <div className="relative p-8 rounded-2xl bg-neutral-900/50 border border-white/5">
-            <p className="font-serif italic text-xl text-neutral-300 mb-6">{t('founder_quote')}</p>
+          <div className="relative p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <p className="font-spectral italic text-xl text-neutral-300 mb-6">{t('founder_quote')}</p>
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-neutral-800 overflow-hidden">
                 <img src="/assets/your-photo.JPG" alt="Founder" className="w-full h-full object-cover" />
               </div>
-              <span className="font-sora font-bold text-sm text-white">{t('founder_name')}</span>
+              <span className="font-dm-sans font-bold text-sm text-white">{t('founder_name')}</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="py-32 bg-gold-alchemist text-deep-black text-center px-6">
+      <section className="py-32 bg-meraas-gold text-white text-center px-6">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="font-sora text-4xl md:text-6xl font-bold mb-8">{t('final_cta')}</h2>
+          <h2 className="font-spectral text-4xl md:text-6xl font-bold mb-8 text-white">{t('final_cta')}</h2>
           <a
             href="https://wa.me/5521993765041"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-10 py-5 bg-deep-black text-white font-bold rounded-full hover:bg-white hover:text-black transition-all duration-300 shadow-2xl"
+            className="inline-block px-10 py-5 bg-meraas-black text-white font-bold rounded-full hover:bg-white hover:text-meraas-black transition-all duration-300 shadow-2xl font-dm-sans"
           >
             {t('final_btn')}
           </a>

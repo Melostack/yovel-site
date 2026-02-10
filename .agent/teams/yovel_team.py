@@ -1,10 +1,20 @@
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 from agno.agent import Agent
 from agno.models.google import Gemini
 from agno.team import Team
+from agno.tools.file import FileTools
+# Add path to import local toolkit
+import sys
+sys.path.append(os.path.join(os.getcwd(), ".agent", "tools"))
+from yovel_kit import YovelKitTools
 
 load_dotenv()
+
+# Initialize toolkit
+yovel_kit = YovelKitTools()
+file_tools = FileTools(base_dir=Path("."))
 
 api_key = os.getenv("GOOGLE_API_KEY")
 if not api_key:
@@ -21,7 +31,9 @@ architect = Agent(
         "Your goal is to ensure the implementation of a 'Luxury Financial Tech' aesthetic.",
         "Review and approve design tokens proposed by the Designer.",
         "Supervise the Frontend Engineer and SEO Auditor.",
+        "Use run_project_checklist to verify the overall state of the project before approval.",
     ],
+    tools=[yovel_kit, file_tools],
     model=gemini_model,
 )
 
@@ -33,8 +45,9 @@ ui_ux_specialist = Agent(
         "Analyze the Meraas design system (meraas.framer.website).",
         "Extract values for border-radius, padding, and typography.",
         "Propose design tokens for the Yovel project.",
+        "Use run_ux_audit to check if current components meet high-end standards.",
     ],
-    # tools=[framer_bridge_tool], # Placeholder for actual tool integration
+    tools=[yovel_kit, file_tools],
     model=gemini_model,
 )
 
@@ -47,6 +60,7 @@ frontend_engineer = Agent(
         "Implement components approved by the Architect.",
         "Use antigravity-kit skills for efficient coding.",
     ],
+    tools=[file_tools],
     model=gemini_model,
 )
 
@@ -58,7 +72,9 @@ seo_auditor = Agent(
         "Analyze page performance using available tools.",
         "Block any commit that reduces the performance score below 95.",
         "Validate LCP and other Core Web Vitals.",
+        "Use run_performance_audit, run_seo_check and run_security_scan frequently.",
     ],
+    tools=[yovel_kit, file_tools],
     model=gemini_model,
 )
 
@@ -67,6 +83,7 @@ yovel_team = Team(
     members=[architect, ui_ux_specialist, frontend_engineer, seo_auditor],
     instructions=[
         "Workflow: Designer proposes tokens -> Architect approves -> Frontend implements -> Auditor validates -> Push.",
+        "Encourage agents to use their specialized tools in YovelKitTools to validate work.",
     ],
     model=gemini_model,
 )
