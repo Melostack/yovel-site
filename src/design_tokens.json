@@ -1,0 +1,26 @@
+{
+    "card_bg": "bg-white/5 backdrop-blur-xl border border-white/10 shadow-glass",
+    "card_border": "border-white/10",
+    "stagger_delay": 0.15,
+    "slots": {
+        "slot_1": {
+            "type": "title",
+            "typography": "font-sora text-3xl md:text-5xl font-bold text-white tracking-tight"
+        },
+        "slot_2": {
+            "type": "feature",
+            "style": "glassmorphism-heavy",
+            "opacity": 0.05
+        },
+        "slot_3": {
+            "type": "image",
+            "src": "/assets/yovel-cup.webp",
+            "alt": "Yovel Method Visualization"
+        },
+        "slot_4": {
+            "type": "cta",
+            "bg": "bg-gold-alchemist",
+            "text": "text-deep-black"
+        }
+    }
+}

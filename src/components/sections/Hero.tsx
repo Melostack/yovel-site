@@ -26,7 +26,7 @@ export const Hero = () => {
     return (
         <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6">
             {/* Background with parallax effect simulated or simple absolute for now */}
-            <div className="absolute inset-0 z-0 bg-[url('/assets/yovel-cup.png')] bg-cover bg-center opacity-30 mix-blend-overlay" />
+            <div className="absolute inset-0 z-0 bg-[url('/assets/yovel-cup.webp')] bg-cover bg-center opacity-30 mix-blend-overlay" />
             <div className="absolute inset-0 bg-gradient-to-b from-deep-black via-transparent to-deep-black z-0" />
 
             <motion.div
