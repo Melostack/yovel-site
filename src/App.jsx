@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { BentoGrid, BentoGridItem } from "./components/ui/BentoGrid";
 import { ServiceCard } from "./components/ui/ServiceCard";
 import { Hero } from "./components/sections/Hero";
+import { Method } from "./components/sections/Method";
 import { cn } from "./lib/utils";
 
 // --- Dicionário de Traduções ---
@@ -111,39 +112,7 @@ function App() {
         </div>
       </section>
 
-      {/* Method Section (Bento Grid) */}
-      <section className="py-32 px-6 bg-deep-black">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-16 text-center md:text-left">
-            <h2 className="font-sora text-4xl font-bold mb-4">{t('method_title')}</h2>
-            <p className="text-neutral-400 max-w-xl">{t('method_desc')}</p>
-          </div>
-
-          <BentoGrid>
-            <BentoGridItem
-              title={t('step1_title')}
-              description={t('step1_desc')}
-              header={<div className="flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-900 to-neutral-800" />}
-              icon={<span className="text-4xl">💰</span>}
-              className="md:col-span-2"
-            />
-            <BentoGridItem
-              title={t('step2_title')}
-              description={t('step2_desc')}
-              header={<div className="flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-gold-alchemist/20 to-neutral-900" />}
-              icon={<span className="text-4xl">✈️</span>}
-              className="md:col-span-1"
-            />
-            <BentoGridItem
-              title={t('partner_title')}
-              description={t('partner_desc')}
-              header={<div className="flex-1 w-full h-full min-h-[6rem] rounded-xl bg-neutral-900 border border-white/5" />}
-              icon={<span className="text-4xl">🤝</span>}
-              className="md:col-span-3"
-            />
-          </BentoGrid>
-        </div>
-      </section>
+      <Method />
 
       {/* Testimonial Section */}
       <section className="py-24 px-6 relative overflow-hidden">
