@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { BentoGrid, BentoGridItem } from "./components/ui/BentoGrid";
 import { ServiceCard } from "./components/ui/ServiceCard";
+import { Hero } from "./components/sections/Hero";
 import { cn } from "./lib/utils";
 
 // --- Dicionário de Traduções ---
@@ -85,43 +86,8 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <motion.div
-          style={{ y: y1 }}
-          className="absolute inset-0 z-0 opacity-30"
-        >
-          {/* Abstract Background or Image */}
-          <div className="absolute inset-0 bg-[url('/assets/yovel-cup.png')] bg-cover bg-center mix-blend-overlay" />
-          <div className="absolute inset-0 bg-gradient-to-b from-deep-black via-transparent to-deep-black" />
-        </motion.div>
-
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-sora text-5xl md:text-7xl font-bold leading-tight mb-6"
-            dangerouslySetInnerHTML={{ __html: t('hero_headline') }}
-          />
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="font-sans text-neutral-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
-          >
-            {t('hero_subheadline')}
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <button className="px-8 py-4 bg-gold-alchemist text-deep-black font-sora font-bold rounded-full hover:bg-white transition-colors duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)]">
-              {t('hero_cta')}
-            </button>
-          </motion.div>
-        </div>
-      </section>
+      {/* Hero Section */}
+      <Hero />
 
       {/* Problem Section */}
       <section className="py-24 px-6 bg-charcoal relative">

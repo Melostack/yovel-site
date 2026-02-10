@@ -31,3 +31,9 @@ build/
 # Thumbnails
 .DS_Store
 Thumbs.db
+
+# Python/Agno specific
+.agent/venv/
+.agent/__pycache__/
+__pycache__/
+*.pyc
