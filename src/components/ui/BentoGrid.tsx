@@ -1,9 +1,14 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import designTokens from '@/theme/design_tokens.json';
 import { cn } from '@/lib/utils';
+import { ReactNode } from 'react';
 
-export const BentoGrid = ({ children, className }) => {
+interface BentoGridProps {
+    children: ReactNode;
+    className?: string;
+}
+
+export const BentoGrid = ({ children, className }: BentoGridProps) => {
     const { stagger_delay } = designTokens.tokens.animations;
 
     return (
@@ -25,13 +30,21 @@ export const BentoGrid = ({ children, className }) => {
     );
 };
 
+interface BentoGridItemProps {
+    className?: string;
+    title?: string | ReactNode;
+    description?: string | ReactNode;
+    header?: ReactNode;
+    icon?: ReactNode;
+}
+
 export const BentoGridItem = ({
     className,
     title,
     description,
     header,
     icon,
-}) => {
+}: BentoGridItemProps) => {
     const { colors, effects, spacing, animations } = designTokens.tokens;
 
     return (

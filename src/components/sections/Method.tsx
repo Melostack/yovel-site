@@ -1,8 +1,6 @@
 import { BentoGrid, BentoGridItem } from "../ui/BentoGrid";
-import designTokens from "@/theme/design_tokens.json";
 
 export const Method = () => {
-    const { colors } = designTokens.tokens;
 
     const items = [
         {
