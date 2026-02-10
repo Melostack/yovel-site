@@ -1,62 +1,67 @@
 import { BentoGrid, BentoGridItem } from "../ui/BentoGrid";
-import designTokens from "@/theme/design_tokens.json";
+import { motion } from "framer-motion";
 
 export const Method = () => {
-    const { colors } = designTokens.tokens;
-
+    // Content directly from RESEARCH.md (The Italy Dossier)
     const items = [
         {
-            title: "OTIMIZAÇÃO CAMBIAL",
-            description: "O sistema financeiro tradicional cobra taxas que você não vê. Nós eliminamos o spread abusivo e o IOF, recuperando em média 15% do seu orçamento global.",
+            title: "TOSCANA SANS FRICÇÃO",
+            description: "Imagine pagar sua Villa na Toscana sem os 5.38% de IOF. Nossa estrutura reduz o custo para 1.1%, pagando o jantar no 'La Pergola' com a economia.",
             header: (
-                <div className="flex-1 w-full h-full min-h-[12rem] rounded-xl bg-gradient-to-br from-neutral-900 to-neutral-800 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1611974765270-ca12586343bb?q=80&w=2548&auto=format&fit=crop')] bg-cover bg-center opacity-20 mix-blend-overlay" />
+                <div className="flex-1 w-full h-full min-h-[12rem] rounded-sm bg-meraas-bg-dark relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-[url('/assets/partner-background-desenho.png')] bg-cover bg-center opacity-40 mix-blend-overlay transition-transform duration-700 group-hover:scale-105" />
+                    <div className="absolute inset-0 border border-meraas-gold/10 group-hover:border-meraas-gold/30 transition-colors duration-500" />
                 </div>
             ),
-            icon: <span className="text-5xl mb-4 block">💰</span>,
+            icon: <span className="text-4xl mb-4 block font-spectral italic text-meraas-gold">01</span>,
             className: "md:col-span-4 md:row-span-2",
         },
         {
-            title: "PODER DE COMPRA",
-            description: "Transformamos economia em acesso: Salas VIP, upgrades e status.",
+            title: "ACIS: ACESSO IMEDIATO",
+            description: "Transformamos stablecoins (USDC) em Euros instantâneos no seu cartão global. Adeus casas de câmbio.",
             header: (
-                <div className="flex-1 w-full h-full min-h-[8rem] rounded-xl bg-gradient-to-br from-gold-alchemist/20 to-neutral-900 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                <div className="flex-1 w-full h-full min-h-[8rem] rounded-sm bg-meraas-bg-alt relative overflow-hidden group">
+                     <div className="absolute inset-0 bg-[url('/assets/yovel-card-preview.png')] bg-contain bg-no-repeat bg-center opacity-90 transition-transform duration-500 group-hover:rotate-3" />
+                     <div className="absolute inset-0 border border-meraas-gold/10 group-hover:border-meraas-gold/30 transition-colors duration-500" />
                 </div>
             ),
-            icon: <span className="text-5xl mb-4 block">✈️</span>,
+            icon: <span className="text-4xl mb-4 block font-spectral italic text-meraas-gold">02</span>,
             className: "md:col-span-2 md:row-span-1",
         },
         {
-            title: "PARCERIAS ESTRATÉGICAS",
-            description: "Acesso exclusivo a tarifas aéreas corporativas através de nossa parceria com Confins.",
+            title: "LIFESTYLE CURATION",
+            description: "De Roma a Milão, nosso concierge financeiro garante que seus pagamentos sejam aceitos em qualquer Michelin.",
             header: (
-                <div className="flex-1 w-full h-full min-h-[8rem] rounded-xl bg-neutral-900 border border-white/5 relative overflow-hidden">
-                    <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-gold-alchemist/10 rounded-full blur-3xl" />
+                <div className="flex-1 w-full h-full min-h-[8rem] rounded-sm bg-meraas-bg-dark border border-meraas-gold/10 relative overflow-hidden group">
+                    <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-meraas-gold/5 rounded-full blur-3xl group-hover:bg-meraas-gold/10 transition-colors duration-500" />
                 </div>
             ),
-            icon: <span className="text-5xl mb-4 block">🤝</span>,
+            icon: <span className="text-4xl mb-4 block font-spectral italic text-meraas-gold">03</span>,
             className: "md:col-span-2 md:row-span-1",
         },
     ];
 
     return (
-        <section className="py-32 px-4 md:px-8 bg-black relative overflow-hidden">
-            {/* Background elements */}
-            <div className="absolute top-0 left-0 w-full h-[50vh] bg-gradient-to-b from-neutral-900/50 to-transparent pointer-events-none" />
-
+        <section className="py-32 px-4 md:px-8 bg-meraas-bg relative overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 <div className="mb-24 md:flex justify-between items-end">
                     <div className="md:w-1/2">
-                        <span className="text-gold-alchemist font-mono text-sm tracking-widest uppercase mb-4 block">Manifesto</span>
-                        <h2 className="font-sora text-5xl md:text-7xl font-extrabold text-white leading-[0.9] tracking-tighter">
+                        <motion.span 
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className="text-meraas-gold font-dm-sans text-xs tracking-[0.2em] uppercase mb-4 block font-bold"
+                        >
+                            Pilares de Execução
+                        </motion.span>
+                        <h2 className="font-spectral text-5xl md:text-7xl font-light text-meraas-black leading-[0.9] tracking-tight">
                             O MÉTODO <br />
-                            <span style={{ color: colors.highlight }}>YOVEL.</span>
+                            <span className="italic text-meraas-gold">YOVEL.</span>
                         </h2>
                     </div>
                     <div className="md:w-1/3 mt-8 md:mt-0">
-                        <p className="text-neutral-400 text-lg leading-relaxed font-light">
-                            Não é sobre "economizar no cafezinho". É sobre reestruturar a engenharia financeira da sua vida global para desbloquear liberdade geográfica.
+                        <p className="text-meraas-gray text-lg leading-relaxed font-dm-sans">
+                            Não é sobre "economizar no cafezinho". É sobre reestruturar a engenharia financeira da sua vida global para desbloquear a verdadeira liberdade geográfica.
                         </p>
                     </div>
                 </div>

@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Lenis from 'lenis'
 import { BentoGrid, BentoGridItem } from "./components/ui/BentoGrid";
 import { ServiceCard } from "./components/ui/ServiceCard";
 import { Hero } from "./components/sections/Hero";
 import { Method } from "./components/sections/Method";
+import { ExchangeEngineering } from "./components/sections/ExchangeEngineering";
 import { InvestmentPerformance } from "./components/sections/InvestmentPerformance";
 import { NoiseOverlay } from "./components/ui/NoiseOverlay";
+import { TextureLayer } from "./components/ui/TextureLayer";
+import { LightLeak } from "./components/ui/LightLeak";
 import { cn } from "./lib/utils";
 
 // --- Dicionário de Traduções ---
@@ -64,25 +68,44 @@ function App() {
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
   const y2 = useTransform(scrollY, [0, 500], [0, -150]);
 
+  useEffect(() => {
+    const lenis = new Lenis()
+
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+
+    return () => {
+      lenis.destroy()
+    }
+  }, [])
+
   const t = (key) => translations[language][key] || key;
 
   return (
     <div className="min-h-screen bg-meraas-bg text-meraas-charcoal selection:bg-meraas-gold selection:text-white overflow-x-hidden font-dm-sans">
       <NoiseOverlay />
+      <TextureLayer opacity={0.3} />
+      <LightLeak />
 
       {/* Navigation / Language */}
-      <nav className="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-meraas-bg/80 backdrop-blur-md border-b border-meraas-charcoal/5">
-        <div className="text-xl font-spectral font-bold tracking-widest text-meraas-black">YOVEL</div>
-        <div className="flex gap-4">
+      <nav className="fixed top-0 w-full z-50 px-6 py-6 flex justify-between items-center bg-meraas-bg/80 backdrop-blur-[52px] border-b border-meraas-gold/10 transition-all duration-500">
+        <div className="flex items-center gap-2">
+            <img src="/assets/logo_yovel.svg" alt="Yovel" className="h-8 w-auto invert-0 opacity-90" />
+        </div>
+        <div className="flex gap-6">
           <button
             onClick={() => setLanguage("pt")}
-            className={cn("text-xs font-bold tracking-widest transition-colors", language === 'pt' ? "text-meraas-gold" : "text-meraas-gray hover:text-meraas-black")}
+            className={cn("text-[10px] font-bold tracking-[0.2em] transition-colors uppercase font-dm-sans", language === 'pt' ? "text-meraas-gold" : "text-meraas-gray hover:text-meraas-black")}
           >
             PT
           </button>
           <button
             onClick={() => setLanguage("en")}
-            className={cn("text-xs font-bold tracking-widest transition-colors", language === 'en' ? "text-meraas-gold" : "text-meraas-gray hover:text-meraas-black")}
+            className={cn("text-[10px] font-bold tracking-[0.2em] transition-colors uppercase font-dm-sans", language === 'en' ? "text-meraas-gold" : "text-meraas-gray hover:text-meraas-black")}
           >
             EN
           </button>
@@ -92,8 +115,10 @@ function App() {
       {/* Hero Section */}
       <Hero />
 
+      <ExchangeEngineering />
+
       {/* Problem Section */}
-      <section className="py-24 px-6 bg-meraas-bg-dark text-white relative">
+      <section className="py-32 px-6 bg-meraas-bg-dark text-white relative">
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0 }}
@@ -139,6 +164,10 @@ function App() {
         </div>
       </section>
 
+import { ConciergePortal } from "./components/sections/ConciergePortal";
+
+// ... inside App component ...
+
       {/* Investment & Founder */}
       <section className="py-32 px-6 bg-meraas-bg-dark text-white">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
@@ -159,24 +188,8 @@ function App() {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-32 bg-meraas-gold text-white text-center px-6">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="font-spectral text-4xl md:text-6xl font-bold mb-8 text-white">{t('final_cta')}</h2>
-          <a
-            href="https://wa.me/5521993765041"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-10 py-5 bg-meraas-black text-white font-bold rounded-full hover:bg-white hover:text-meraas-black transition-all duration-300 shadow-2xl font-dm-sans"
-          >
-            {t('final_btn')}
-          </a>
-        </motion.div>
-      </section>
+      {/* Concierge Portal */}
+      <ConciergePortal />
 
     </div>
   );

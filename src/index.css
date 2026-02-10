@@ -1,21 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Spectral:ital,wght@0,200..800;1,200..800&family=Fragment+Mono:ital,wght@0,400;1,400&display=swap');
-/* Geist is often self-hosted or Vercel-hosted, omitting strictly from Google Fonts URL unless sure. 
-   Assuming standard usage or user will handle specific Geist import if critical. */
 
 @import "tailwindcss";
 @config "../tailwind.config.js";
 
 @layer base {
   body {
-    @apply bg-deep-black text-white font-sora antialiased;
+    @apply bg-meraas-bg text-meraas-charcoal font-dm-sans antialiased;
   }
 }
 
 .glass-card {
-  @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-xl;
+  @apply bg-white/5 backdrop-blur-[52px] border border-white/10 shadow-xl;
 }
 
-.text-gradient-gold {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-gold-alchemist to-yellow-200;
+/* Lenis Recommended Styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }

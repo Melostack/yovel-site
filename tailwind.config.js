@@ -23,20 +23,36 @@ export default {
                 'meraas-gold': '#ab6b18',
             },
             fontFamily: {
-                sora: ['Sora', 'sans-serif'],
                 // Meraas Design System
                 'dm-sans': ['"DM Sans"', 'sans-serif'],
                 'spectral': ['Spectral', 'serif'],
                 'geist': ['Geist', 'sans-serif'],
                 'fragment-mono': ['"Fragment Mono"', 'monospace'],
             },
+            fontSize: {
+                '12vw': '12vw',
+                '8vw': '8vw',
+                '10xl': '10rem',
+            },
+            letterSpacing: {
+                'negative-tight': '-0.03em',
+                'negative-tighter': '-0.05em',
+            },
+            transitionTimingFunction: {
+                'luxury': 'cubic-bezier(0.16, 1, 0.3, 1)',
+            },
             animation: {
                 'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                'mask-reveal': 'maskReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards',
             },
             keyframes: {
                 fadeInUp: {
                     '0%': { opacity: '0', transform: 'translateY(20px)' },
                     '100%': { opacity: '1', transform: 'translateY(0)' },
+                },
+                maskReveal: {
+                    '0%': { transform: 'translateY(100%)' },
+                    '100%': { transform: 'translateY(0)' },
                 },
             },
         },
