@@ -20,7 +20,7 @@ export const BentoGrid = ({ children, className }: BentoGridProps) => {
                 visible: { transition: { staggerChildren: stagger_delay } }
             }}
             className={cn(
-                "grid grid-cols-1 md:grid-cols-3 auto-rows-[20rem] gap-6",
+                "grid grid-cols-1 md:grid-cols-6 auto-rows-[minmax(180px,auto)] gap-4 mx-auto",
                 className
             )}
             style={{ gap: designTokens.tokens.spacing.bento_gap }}
@@ -47,14 +47,29 @@ export const BentoGridItem = ({
 }: BentoGridItemProps) => {
     const { colors, effects, spacing, animations } = designTokens.tokens;
 
+    // Clip-path reveal animation ("blooming")
+    const revealVariants = {
+        hidden: {
+            clipPath: "inset(100% 0 0 0)",
+            opacity: 0,
+            y: 20
+        },
+        visible: {
+            clipPath: "inset(0 0 0 0)",
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: animations.reveal_duration,
+                ease: animations.reveal_ease as any
+            }
+        }
+    };
+
     return (
         <motion.div
-            variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: animations.fade_duration } }
-            }}
+            variants={revealVariants}
             className={cn(
-                "row-span-1 rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input p-4 justify-between flex flex-col space-y-4",
+                "group/bento hover:shadow-xl transition duration-200 shadow-input justify-between flex flex-col space-y-4",
                 className
             )}
             style={{
@@ -70,12 +85,18 @@ export const BentoGridItem = ({
             }}
         >
             {header}
-            <div className="group-hover/bento:translate-x-2 transition duration-200">
+            <div className="group-hover/bento:translate-x-2 transition duration-200 mt-auto">
                 {icon}
-                <div className="font-sans font-bold text-neutral-200 mb-2 mt-2">
+                <div
+                    className="font-sora font-extrabold mb-2 mt-4 text-xl md:text-2xl leading-tight"
+                    style={{ color: colors.text_manifesto }}
+                >
                     {title}
                 </div>
-                <div className="font-sans font-normal text-neutral-300 text-xs">
+                <div
+                    className="font-sans font-medium text-sm md:text-base leading-relaxed"
+                    style={{ color: colors.text_muted }}
+                >
                     {description}
                 </div>
             </div>
