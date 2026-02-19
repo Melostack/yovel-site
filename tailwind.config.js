@@ -7,20 +7,20 @@ export default {
     theme: {
         extend: {
             colors: {
-                'deep-black': '#080808',
+                'deep-black': '#050505',
                 'gold-alchemist': '#D4AF37',
                 'charcoal': '#121212',
-                // Meraas Design System
-                'meraas-bg': '#edeae1',
-                'meraas-bg-alt': '#e5e2d9',
-                'meraas-bg-dark': '#141714',
-                'meraas-black': '#000000',
-                'meraas-charcoal': '#2b2b2b',
-                'meraas-gray': '#575656',
-                'meraas-gray-light': '#b3b0a6',
-                'meraas-green': '#3f4d3d',
-                'meraas-green-light': '#4e6b4e',
-                'meraas-gold': '#ab6b18',
+                // Meraas Design System (Premium Overhaul)
+                'meraas-bg': '#0A0A0B',
+                'meraas-bg-alt': '#121212',
+                'meraas-bg-dark': '#050505',
+                'meraas-black': '#FFFFFF',
+                'meraas-charcoal': '#F5F5F7',
+                'meraas-gray': '#A1A1AA',
+                'meraas-gray-light': '#3F3F46',
+                'meraas-green': '#4ade80',
+                'meraas-green-light': '#22c55e',
+                'meraas-gold': '#fbbf24',
             },
             fontFamily: {
                 // Meraas Design System
