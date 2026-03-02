@@ -7,8 +7,6 @@ yarn-error.log*
 
 # Dependency directories
 node_modules/
-bower_components/
-jspm_packages/
 
 # IDEs and editors
 .vscode/
@@ -32,9 +30,11 @@ build/
 .DS_Store
 Thumbs.db
 
-# Python/Agno specific
-.agent/venv/
-.agent/__pycache__/
+# Python
+.venv/
 __pycache__/
 *.pyc
-.env
+
+# Agent internals
+.agent/venv/
+.agent/__pycache__/
