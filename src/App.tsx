@@ -16,7 +16,7 @@ import {
 gsap.registerPlugin(ScrollTrigger);
 
 // WhatsApp CTA — substitua pelo seu número real
-const WHATSAPP_NUMBER = '5531999999999';
+const WHATSAPP_NUMBER = '5521993765041';
 const WHATSAPP_MSG = encodeURIComponent('Olá! Gostaria de agendar meu diagnóstico financeiro com a Yovel.');
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
 
